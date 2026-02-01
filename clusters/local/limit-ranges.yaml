@@ -7,15 +7,15 @@ spec:
   limits:
     - type: Container
       default:
-        cpu: 500m
-        memory: 512Mi
+        cpu: 1000m
+        memory: 1Gi
       defaultRequest:
         cpu: 100m
         memory: 128Mi
     - type: Pod
       max:
-        cpu: "2"
-        memory: 2Gi
+        cpu: "4"
+        memory: 4Gi
       min:
         cpu: 10m
         memory: 32Mi
