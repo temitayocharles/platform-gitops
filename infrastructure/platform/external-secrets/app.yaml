@@ -1,33 +1,38 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: platform-root
+  name: external-secrets
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/compare-result: "true"
 spec:
   project: platform-tools
-
+  
   source:
-    repoURL: https://github.com/temitayocharles/platform-gitops.git
-    targetRevision: main
-    path: infrastructure
-
+    repoURL: https://charts.external-secrets.io
+    chart: external-secrets
+    targetRevision: 0.9.9
+    helm:
+      values: |
+        installCRDs: true
+        
+        webhook:
+          port: 8080
+          
+        secretStores:
+          enabled: false
+  
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
-
+    namespace: external-secrets
+  
   syncPolicy:
     automated:
       prune: false
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - PruneLast=true
     retry:
       limit: 5
       backoff:
         duration: 5s
         factor: 2
         maxDuration: 3m
-

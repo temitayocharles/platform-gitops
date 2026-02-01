@@ -1,6 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: security
 
-resources: []
+resources:
+  - rbac/default-rbac.yaml
 
-# Placeholder for security infrastructure apps
+# Add network policies when needed

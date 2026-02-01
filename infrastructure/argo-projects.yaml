@@ -1,0 +1,99 @@
+---
+# Platform Tools Project - Admin only (Vault, ESO, Argo CD)
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: platform-tools
+  namespace: argocd
+spec:
+  description: "Core platform infrastructure (Vault, External Secrets, Argo CD)"
+  sourceRepos:
+  - 'https://github.com/temitayocharles/platform-gitops.git'
+  - 'https://prometheus-community.github.io/helm-charts'
+  - 'https://external-secrets.io/charts'
+  destinations:
+  - namespace: 'vault'
+    server: https://kubernetes.default.svc
+  - namespace: 'vault-admin'
+    server: https://kubernetes.default.svc
+  - namespace: 'external-secrets'
+    server: https://kubernetes.default.svc
+  - namespace: 'argocd'
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  namespaceResourceBlacklist:
+  - group: ''
+    kind: ResourceQuota
+  - group: ''
+    kind: LimitRange
+  orphanedResources:
+    warn: true
+
+---
+# Observability Project - DevOps team (Prometheus, Alertmanager, Grafana)
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: platform-observability
+  namespace: argocd
+spec:
+  description: "Observability stack (Prometheus, Alertmanager, Grafana, Loki)"
+  sourceRepos:
+  - 'https://github.com/temitayocharles/platform-gitops.git'
+  - 'https://prometheus-community.github.io/helm-charts'
+  - 'https://grafana.github.io/helm-charts'
+  destinations:
+  - namespace: 'observability'
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: 'monitoring.coreos.com'
+    kind: '*'
+  namespaceResourceBlacklist:
+  - group: ''
+    kind: ResourceQuota
+  - group: ''
+    kind: LimitRange
+
+---
+# Security Project - Security team (RBAC, Network Policies)
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: platform-security
+  namespace: argocd
+spec:
+  description: "Security & access control (RBAC, Network Policies)"
+  sourceRepos:
+  - 'https://github.com/temitayocharles/platform-gitops.git'
+  destinations:
+  - namespace: 'security'
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: 'rbac.authorization.k8s.io'
+    kind: '*'
+  - group: 'networking.k8s.io'
+    kind: '*'
+
+---
+# Workloads Project - Developers (User applications)
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: workloads
+  namespace: argocd
+spec:
+  description: "User applications and services"
+  sourceRepos:
+  - 'https://github.com/temitayocharles/platform-gitops.git'
+  destinations:
+  - namespace: 'workloads'
+    server: https://kubernetes.default.svc
+  - namespace: 'applications'
+    server: https://kubernetes.default.svc
+  - namespace: 'services'
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace

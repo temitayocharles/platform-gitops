@@ -1,8 +1,15 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: argocd
 
 resources:
-  - argocd/projects/platform-observability.yaml
-  - argocd/projects/platform-security.yaml
-  - argocd/projects/workloads.yaml
+  - argo-projects.yaml
+  - platform-tools-app.yaml
+  - observability-app.yaml
+  - security-app.yaml
+  - workloads-app.yaml
+  - platform/
+  - observability/
+  - security/
+  - workloads/
+
+namespace: argocd

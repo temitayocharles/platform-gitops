@@ -1,33 +1,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: platform-root
+  name: security
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/compare-result: "true"
 spec:
-  project: platform-tools
-
+  project: platform-security
+  
   source:
     repoURL: https://github.com/temitayocharles/platform-gitops.git
     targetRevision: main
-    path: infrastructure
-
+    path: infrastructure/security
+  
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
-
+    namespace: security
+  
   syncPolicy:
     automated:
       prune: false
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - PruneLast=true
     retry:
       limit: 5
       backoff:
         duration: 5s
         factor: 2
         maxDuration: 3m
-
