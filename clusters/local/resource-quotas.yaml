@@ -6,9 +6,9 @@ metadata:
 spec:
   hard:
     requests.cpu: "4"
-    requests.memory: 5Gi
+    requests.memory: 6Gi
     limits.cpu: "8"
-    limits.memory: 8Gi
+    limits.memory: 10Gi
   scopeSelector:
     matchExpressions:
       - operator: In
@@ -34,7 +34,7 @@ metadata:
   namespace: workloads
 spec:
   hard:
-    requests.cpu: "2"
-    requests.memory: 2Gi
-    limits.cpu: "4"
-    limits.memory: 4Gi
+    requests.cpu: "3"
+    requests.memory: 4Gi
+    limits.cpu: "6"
+    limits.memory: 6Gi
