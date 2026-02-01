@@ -1,3 +1,5 @@
-loki:
-  limits_config:
-    retention_period: 168h
+# Loki disabled until object storage backend is configured
+# To enable: configure S3/MinIO backend and uncomment below
+# loki:
+#   limits_config:
+#     retention_period: 168h

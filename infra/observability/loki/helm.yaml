@@ -10,12 +10,21 @@ spec:
     repoURL: https://grafana.github.io/helm-charts
     targetRevision: 6.51.0
     helm:
-      valueFiles:
-      - values.yaml
+      values: |
+        # Loki disabled - requires object storage backend (S3/MinIO)
+        # To enable:
+        # 1. Configure S3/MinIO backend
+        # 2. Update storage config below
+        # 3. Uncomment loki and minio sections
+        
+        loki:
+          enabled: false
+        minio:
+          enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: observability
   syncPolicy:
     automated:
-      prune: true
+      prune: false
       selfHeal: true
