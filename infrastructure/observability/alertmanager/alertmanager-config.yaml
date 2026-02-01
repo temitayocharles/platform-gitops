@@ -15,8 +15,10 @@ spec:
       sendResolved: true
   
   inhibitRules:
-  - sourceMatch:
-      alertname: 'VaultHealthAlert'
-    targetMatch:
-      alertname: '.*'
-    equal: []
+  - sourceMatches:
+    - name: alertname
+      value: 'VaultHealthAlert'
+    targetMatches:
+    - name: alertname
+      matchType: '=~'
+      value: '.*'
