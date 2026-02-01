@@ -5,10 +5,10 @@ metadata:
   namespace: observability
 spec:
   hard:
-    requests.cpu: "8"
-    requests.memory: 16Gi
-    limits.cpu: "16"
-    limits.memory: 32Gi
+    requests.cpu: "4"
+    requests.memory: 5Gi
+    limits.cpu: "8"
+    limits.memory: 8Gi
   scopeSelector:
     matchExpressions:
       - operator: In
@@ -22,10 +22,10 @@ metadata:
   namespace: security
 spec:
   hard:
-    requests.cpu: "2"
-    requests.memory: 4Gi
-    limits.cpu: "4"
-    limits.memory: 8Gi
+    requests.cpu: "1"
+    requests.memory: 1.5Gi
+    limits.cpu: "2"
+    limits.memory: 3Gi
 ---
 apiVersion: v1
 kind: ResourceQuota
@@ -34,7 +34,7 @@ metadata:
   namespace: workloads
 spec:
   hard:
-    requests.cpu: "4"
-    requests.memory: 8Gi
-    limits.cpu: "8"
-    limits.memory: 16Gi
+    requests.cpu: "2"
+    requests.memory: 2Gi
+    limits.cpu: "4"
+    limits.memory: 4Gi

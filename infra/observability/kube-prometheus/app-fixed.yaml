@@ -28,15 +28,15 @@ spec:
         prometheus:
           enabled: true
           prometheusSpec:
-            retention: 15d
-            retentionSize: "20GB"
+            retention: 7d
+            retentionSize: "3GB"
             resources:
               requests:
-                cpu: 200m
-                memory: 1Gi
+                cpu: 100m
+                memory: 512Mi
               limits:
-                cpu: "1"
-                memory: 2Gi
+                cpu: 500m
+                memory: 1Gi
             storageSpec:
               volumeClaimTemplate:
                 spec:
@@ -44,7 +44,7 @@ spec:
                   accessModes: ["ReadWriteOnce"]
                   resources:
                     requests:
-                      storage: 10Gi
+                      storage: 3Gi
 
         alertmanager:
           enabled: true
@@ -56,14 +56,14 @@ spec:
                   accessModes: ["ReadWriteOnce"]
                   resources:
                     requests:
-                      storage: 2Gi
+                      storage: 500Mi
             resources:
               requests:
-                cpu: 100m
-                memory: 128Mi
+                cpu: 50m
+                memory: 64Mi
               limits:
-                cpu: 500m
-                memory: 512Mi
+                cpu: 200m
+                memory: 256Mi
 
         prometheus-operator:
           enabled: true

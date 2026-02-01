@@ -7,15 +7,15 @@ spec:
   limits:
     - type: Container
       default:
-        cpu: 1000m
-        memory: 1Gi
+        cpu: 500m
+        memory: 512Mi
       defaultRequest:
-        cpu: 100m
-        memory: 128Mi
+        cpu: 50m
+        memory: 64Mi
     - type: Pod
       max:
-        cpu: "4"
-        memory: 4Gi
+        cpu: "2"
+        memory: 2Gi
       min:
         cpu: 10m
         memory: 32Mi
@@ -29,11 +29,11 @@ spec:
   limits:
     - type: Container
       default:
-        cpu: 250m
+        cpu: 200m
         memory: 256Mi
       defaultRequest:
-        cpu: 50m
-        memory: 64Mi
+        cpu: 25m
+        memory: 32Mi
 ---
 apiVersion: v1
 kind: LimitRange
@@ -44,15 +44,15 @@ spec:
   limits:
     - type: Container
       default:
-        cpu: 500m
-        memory: 512Mi
+        cpu: 300m
+        memory: 256Mi
       defaultRequest:
-        cpu: 100m
-        memory: 128Mi
+        cpu: 50m
+        memory: 64Mi
     - type: Pod
       max:
         cpu: "1"
-        memory: 1Gi
+        memory: 512Mi
       min:
         cpu: 10m
         memory: 32Mi
