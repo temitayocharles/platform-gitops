@@ -4,13 +4,14 @@ metadata:
   name: loki
   namespace: argocd
 spec:
+  project: default
   source:
     chart: loki
     repoURL: https://grafana.github.io/helm-charts
     targetRevision: 6.51.0
     helm:
       valueFiles:
-        - values.yaml
+      - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: observability
@@ -18,4 +19,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-
