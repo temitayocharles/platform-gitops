@@ -3,9 +3,6 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-  - ../argo-projects.yaml
-
-components:
   - vault/
   - external-secrets/
   - argo-cd/
