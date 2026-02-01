@@ -45,6 +45,31 @@ spec:
                       storage: 5Gi
                   storageClassName: local-path
         
+        defaultRules:
+          create: true
+          rules:
+            general: true
+            alertmanager: true
+            etcd: false
+            configReloaders: true
+            k8s: true
+            kubeApiserver: true
+            kubeApiserverAvailability: true
+            kubeApiserverSlos: true
+            kubelet: true
+            kubeProxy: true
+            kubePrometheusGeneral: false
+            kubePrometheusNodeRecording: true
+            kubernetesApps: true
+            kubernetesResources: true
+            kubernetesStorage: true
+            kubernetesSystem: true
+            kubeScheduler: true
+            kubeStateMetrics: true
+            nodeExporter: true
+            prometheus: true
+            prometheusOperator: true
+        
         prometheus-operator:
           enabled: true
   
