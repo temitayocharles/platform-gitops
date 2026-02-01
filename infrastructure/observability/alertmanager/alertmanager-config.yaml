@@ -13,3 +13,10 @@ spec:
     webhookConfigs:
     - url: 'https://discord.com/api/webhooks/14667372935021856/CXzqqwVHZZ0NgX1LLWYZEQJwJ54Lx5DGxGi3my9sj1plAs3cDBL6eeWWtfTpc1OxY2MB'
       sendResolved: true
+  
+  inhibitRules:
+  - sourceMatch:
+      alertname: 'VaultHealthAlert'
+    targetMatch:
+      alertname: '.*'
+    equal: []
