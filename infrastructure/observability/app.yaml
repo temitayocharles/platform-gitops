@@ -4,7 +4,7 @@ metadata:
   name: observability
   namespace: argocd
 spec:
-  project: platform-observability
+  project: default
   source:
     repoURL: https://github.com/temitayocharles/platform-gitops.git
     targetRevision: main

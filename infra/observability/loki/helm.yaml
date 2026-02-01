@@ -11,16 +11,35 @@ spec:
     targetRevision: 6.51.0
     helm:
       values: |
-        # Loki disabled - requires object storage backend (S3/MinIO)
-        # To enable:
-        # 1. Configure S3/MinIO backend
-        # 2. Update storage config below
-        # 3. Uncomment loki and minio sections
-        
+        # Loki with local storage (development only)
         loki:
-          enabled: false
+          enabled: true
+          auth_enabled: false
+          commonConfig:
+            replication_factor: 1
+          storage:
+            type: filesystem
+            filesystem:
+              directory: /loki/chunks
+          limits_config:
+            retention_period: 168h
+        
         minio:
           enabled: false
+        
+        read:
+          replicas: 1
+        
+        write:
+          replicas: 1
+        
+        backend:
+          replicas: 1
+        
+        persistence:
+          enabled: true
+          size: 10Gi
+          storageClassName: local-path
   destination:
     server: https://kubernetes.default.svc
     namespace: observability
