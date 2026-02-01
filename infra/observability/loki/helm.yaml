@@ -17,29 +17,41 @@ spec:
           auth_enabled: false
           commonConfig:
             replication_factor: 1
+            storage:
+              type: filesystem
+              filesystem:
+                directory: /loki/chunks
+            limits_config:
+              retention_period: 168h
           storage:
-            type: filesystem
-            filesystem:
-              directory: /loki/chunks
-          limits_config:
-            retention_period: 168h
+            bucketNames:
+              chunks: chunks
+              rules: rules
+              admin: admin
         
         minio:
           enabled: false
         
         read:
           replicas: 1
+          persistence:
+            enabled: true
+            size: 5Gi
+            storageClassName: local-path
         
         write:
           replicas: 1
+          persistence:
+            enabled: true
+            size: 5Gi
+            storageClassName: local-path
         
         backend:
           replicas: 1
-        
-        persistence:
-          enabled: true
-          size: 10Gi
-          storageClassName: local-path
+          persistence:
+            enabled: true
+            size: 5Gi
+            storageClassName: local-path
   destination:
     server: https://kubernetes.default.svc
     namespace: observability
