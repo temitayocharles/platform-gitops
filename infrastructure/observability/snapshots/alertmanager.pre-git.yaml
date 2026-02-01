@@ -1,0 +1,15 @@
+# Alertmanager Configuration Snapshot
+# This file will be populated with the current working configuration
+# after Phase 2 when Prometheus stack is fully deployed.
+#
+# Created: 2026-02-01 (Phase 1)
+# Purpose: Immutable audit trail of alert routing configuration
+#
+# This is the break-glass rollback reference.
+# Never edit this file manually.
+
+# Snapshot will contain:
+# - global resolution timeout settings
+# - alert routing rules
+# - receiver configurations (Discord webhook, email, etc)
+# - grouping rules and repeat intervals

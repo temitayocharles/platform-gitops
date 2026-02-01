@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: workloads
+  namespace: argocd
+spec:
+  description: "Workload applications (demo, test, user apps)"
+  
+  sourceRepos:
+    - 'https://github.com/temitayocharles/platform-gitops.git'
+    - 'https://*'
+  
+  destinations:
+    - namespace: apps
+      server: https://kubernetes.default.svc
+    - namespace: workloads
+      server: https://kubernetes.default.svc
+    - namespace: 'apps-*'
+      server: https://kubernetes.default.svc
+  
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  
+  roles:
+    - name: developer
+      description: "Developer access to workload apps"
+      policies:
+        - p, proj:workloads:developer, applications, *, workloads/*, allow

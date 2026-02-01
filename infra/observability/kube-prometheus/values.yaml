@@ -5,7 +5,15 @@ grafana:
 
 prometheus:
   prometheusSpec:
-    retention: 7d
+    retention: 15d
+    retentionsize: 20GB
+    resources:
+      requests:
+        cpu: 200m
+        memory:1Gi
+      limits:
+        cpu:1
+        memory 2Gi
     storageSpec:
       volumeClaimTemplate:
         spec:

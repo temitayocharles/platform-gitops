@@ -8,4 +8,7 @@
           registry: docker.io
           repository: nginx
           tag: "1.25"
-
+  helm:
+    values: |
+      podAnnotations:
+        secret.reloader.stakater.com/reload: "demo-secret"

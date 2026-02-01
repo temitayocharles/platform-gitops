@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: platform-security
+  namespace: argocd
+spec:
+  description: "Security infrastructure (Vault, External Secrets)"
+  
+  sourceRepos:
+    - 'https://github.com/temitayocharles/platform-gitops.git'
+    - 'https://helm.releases.hashicorp.com'
+  
+  destinations:
+    - namespace: security
+      server: https://kubernetes.default.svc
+    - namespace: vault
+      server: https://kubernetes.default.svc
+    - namespace: external-secrets
+      server: https://kubernetes.default.svc
+  
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+    - group: "rbac.authorization.k8s.io"
+      kind: ClusterRole
+    - group: "rbac.authorization.k8s.io"
+      kind: ClusterRoleBinding
+  
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  
+  roles:
+    - name: readonly
+      description: "Read-only access to security apps"
+      policies:
+        - p, proj:platform-security:readonly, applications, get, platform-security/*, allow
