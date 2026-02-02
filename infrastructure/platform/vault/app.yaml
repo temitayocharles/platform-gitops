@@ -11,33 +11,8 @@ spec:
     chart: vault
     targetRevision: 0.27.0
     helm:
-      values: |
-        server:
-          dataStorage:
-            enabled: true
-            size: 10Gi
-            storageClass: local-path
-          
-          auditStorage:
-            enabled: true
-            size: 5Gi
-            storageClass: local-path
-          
-          ha:
-            enabled: true
-            replicas: 1
-            raft:
-              enabled: true
-              setNodeId: true
-          
-          standalone:
-            enabled: false
-        
-        injector:
-          enabled: true
-        
-        ui:
-          enabled: true
+      valueFiles:
+      - https://raw.githubusercontent.com/temitayocharles/helm-charts/main/vault/values.yaml
   
   destination:
     server: https://kubernetes.default.svc

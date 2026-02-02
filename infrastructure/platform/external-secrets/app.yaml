@@ -11,14 +11,8 @@ spec:
     chart: external-secrets
     targetRevision: 0.9.9
     helm:
-      values: |
-        installCRDs: true
-        
-        webhook:
-          port: 8080
-          
-        secretStores:
-          enabled: false
+      valueFiles:
+      - https://raw.githubusercontent.com/temitayocharles/helm-charts/main/external-secrets/values.yaml
   
   destination:
     server: https://kubernetes.default.svc

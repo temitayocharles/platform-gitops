@@ -13,31 +13,8 @@ spec:
     chart: argo-cd
     targetRevision: 5.52.1
     helm:
-      values: |
-        global:
-          domain: argocd.local
-        
-        server:
-          service:
-            type: ClusterIP
-            port: 80
-          
-          extraArgs:
-            - --insecure
-        
-        repoServer:
-          autoscaling:
-            enabled: false
-          resources:
-            requests:
-              cpu: 100m
-              memory: 128Mi
-        
-        controller:
-          resources:
-            requests:
-              cpu: 100m
-              memory: 128Mi
+      valueFiles:
+      - https://raw.githubusercontent.com/temitayocharles/helm-charts/main/argocd/values.yaml
   
   destination:
     server: https://kubernetes.default.svc

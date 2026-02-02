@@ -3,13 +3,10 @@ kind: Kustomization
 
 resources:
   - argo-projects.yaml
-  - platform-tools-app.yaml
-  - observability-app.yaml
-  - security-app.yaml
-  - workloads-app.yaml
   - platform/
   - observability/
   - security/
   - workloads/
+  - clusters/
 
 namespace: argocd
