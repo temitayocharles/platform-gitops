@@ -1,16 +1,19 @@
 ---
-# Platform Tools Project - Admin only (Vault, ESO, Argo CD)
+# Platform Tools Project - Admin only (Vault, ESO, Argo CD, Cert-Manager, Velero)
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: platform-tools
   namespace: argocd
 spec:
-  description: "Core platform infrastructure (Vault, External Secrets, Argo CD)"
+  description: "Core platform infrastructure (Vault, External Secrets, Argo CD, Cert-Manager, Velero)"
   sourceRepos:
   - 'https://github.com/temitayocharles/platform-gitops.git'
+  - 'https://github.com/temitayocharles/helm-charts.git'
   - 'https://prometheus-community.github.io/helm-charts'
   - 'https://external-secrets.io/charts'
+  - 'https://charts.jetstack.io'
+  - 'https://vmware-tanzu.github.io/helm-charts'
   destinations:
   - namespace: 'vault'
     server: https://kubernetes.default.svc
@@ -21,6 +24,10 @@ spec:
   - namespace: 'argocd'
     server: https://kubernetes.default.svc
   - namespace: 'traefik'
+    server: https://kubernetes.default.svc
+  - namespace: 'cert-manager'
+    server: https://kubernetes.default.svc
+  - namespace: 'velero'
     server: https://kubernetes.default.svc
   clusterResourceWhitelist:
   - group: '*'
@@ -34,7 +41,7 @@ spec:
     warn: true
 
 ---
-# Observability Project - DevOps team (Prometheus, Alertmanager, Grafana)
+# Observability Project - DevOps team (Prometheus, Alertmanager, Grafana, Loki)
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
@@ -49,6 +56,8 @@ spec:
   - 'https://grafana.github.io/helm-charts'
   destinations:
   - namespace: 'observability'
+    server: https://kubernetes.default.svc
+  - namespace: 'monitoring'
     server: https://kubernetes.default.svc
   clusterResourceWhitelist:
   - group: 'monitoring.coreos.com'
