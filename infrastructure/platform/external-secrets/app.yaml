@@ -3,16 +3,24 @@ kind: Application
 metadata:
   name: external-secrets
   namespace: argocd
+  labels:
+    type: infrastructure
+    app: external-secrets
 spec:
   project: platform-tools
   
-  source:
-    repoURL: https://charts.external-secrets.io
-    chart: external-secrets
-    targetRevision: 0.9.9
-    helm:
-      valueFiles:
-      - https://raw.githubusercontent.com/temitayocharles/helm-charts/main/external-secrets/values.yaml
+  sources:
+    - repoURL: https://github.com/temitayocharles/helm-charts.git
+      targetRevision: main
+      ref: values
+    
+    - repoURL: https://charts.external-secrets.io
+      chart: external-secrets
+      targetRevision: 0.9.9
+      helm:
+        releaseName: external-secrets
+        valueFiles:
+          - $values/external-secrets/values.yaml
   
   destination:
     server: https://kubernetes.default.svc
@@ -24,6 +32,7 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - ServerSideApply=true
     retry:
       limit: 5
       backoff:

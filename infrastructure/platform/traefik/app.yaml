@@ -3,16 +3,24 @@ kind: Application
 metadata:
   name: traefik
   namespace: argocd
+  labels:
+    type: infrastructure
+    app: traefik
 spec:
   project: platform-tools
 
-  source:
-    repoURL: https://traefik.github.io/charts
-    chart: traefik
-    targetRevision: 27.0.2
-    helm:
-      valueFiles:
-      - https://raw.githubusercontent.com/temitayocharles/helm-charts/main/traefik/values.yaml
+  sources:
+    - repoURL: https://github.com/temitayocharles/helm-charts.git
+      targetRevision: main
+      ref: values
+    
+    - repoURL: https://traefik.github.io/charts
+      chart: traefik
+      targetRevision: 27.0.2
+      helm:
+        releaseName: traefik
+        valueFiles:
+          - $values/traefik/values.yaml
 
   destination:
     server: https://kubernetes.default.svc
@@ -24,6 +32,7 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - ServerSideApply=true
     retry:
       limit: 5
       backoff:

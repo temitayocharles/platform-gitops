@@ -3,18 +3,26 @@ kind: Application
 metadata:
   name: argo-cd
   namespace: argocd
+  labels:
+    type: infrastructure
+    app: argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: platform-tools
   
-  source:
-    repoURL: https://argoproj.github.io/argo-helm
-    chart: argo-cd
-    targetRevision: 5.52.1
-    helm:
-      valueFiles:
-      - https://raw.githubusercontent.com/temitayocharles/helm-charts/main/argocd/values.yaml
+  sources:
+    - repoURL: https://github.com/temitayocharles/helm-charts.git
+      targetRevision: main
+      ref: values
+    
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argo-cd
+      targetRevision: 5.52.1
+      helm:
+        releaseName: argo-cd
+        valueFiles:
+          - $values/argocd/values.yaml
   
   destination:
     server: https://kubernetes.default.svc
@@ -27,6 +35,7 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - PruneLast=true
+      - ServerSideApply=true
     retry:
       limit: 5
       backoff:

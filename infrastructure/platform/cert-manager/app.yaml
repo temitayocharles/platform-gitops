@@ -3,16 +3,24 @@ kind: Application
 metadata:
   name: cert-manager
   namespace: argocd
+  labels:
+    type: infrastructure
+    app: cert-manager
 spec:
   project: platform-tools
 
-  source:
-    repoURL: https://charts.jetstack.io
-    chart: cert-manager
-    targetRevision: v1.19.3
-    helm:
-      valueFiles:
-      - https://raw.githubusercontent.com/temitayocharles/helm-charts/main/cert-manager/values.yaml
+  sources:
+    - repoURL: https://github.com/temitayocharles/helm-charts.git
+      targetRevision: main
+      ref: values
+    
+    - repoURL: https://charts.jetstack.io
+      chart: cert-manager
+      targetRevision: v1.19.3
+      helm:
+        releaseName: cert-manager
+        valueFiles:
+          - $values/cert-manager/values.yaml
 
   destination:
     server: https://kubernetes.default.svc
@@ -20,7 +28,8 @@ spec:
 
   syncPolicy:
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
+      - ServerSideApply=true
     automated:
       prune: false
       selfHeal: true
