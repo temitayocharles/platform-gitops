@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - argo-projects.yaml
+  - platform-tools-app.yaml
   - platform/
   - observability/
   - security/
