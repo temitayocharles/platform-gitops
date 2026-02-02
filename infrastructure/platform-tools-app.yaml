@@ -6,7 +6,7 @@ metadata:
 spec:
   project: platform-tools
   source:
-    repoURL: https://github.com/temitayocharles/argocd-gitops.git
+    repoURL: https://github.com/temitayocharles/platform-gitops.git
     targetRevision: main
     path: infrastructure/platform
   destination:
