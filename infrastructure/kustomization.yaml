@@ -6,7 +6,6 @@ resources:
   - platform/
   - observability/
   - security/
-  - workloads/
   - clusters/
 
 namespace: argocd
