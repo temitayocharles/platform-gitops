@@ -14,7 +14,7 @@ spec:
       targetRevision: main
       ref: values
     
-    - repoURL: https://external-secrets.io/charts
+    - repoURL: https://charts.external-secrets.io
       chart: external-secrets
       targetRevision: 0.9.9
       helm:
