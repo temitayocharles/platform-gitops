@@ -10,6 +10,9 @@ spec:
   sourceRepos:
   - 'https://github.com/temitayocharles/platform-gitops.git'
   - 'https://github.com/temitayocharles/helm-charts.git'
+  - 'https://helm.releases.hashicorp.com'
+  - 'https://argoproj.github.io/argo-helm'
+  - 'https://traefik.github.io/charts'
   - 'https://prometheus-community.github.io/helm-charts'
   - 'https://external-secrets.io/charts'
   - 'https://charts.jetstack.io'
