@@ -7,3 +7,5 @@ resources:
   - external-secrets/
   - argo-cd/
   - traefik/
+  - cert-manager/
+  - velero/
