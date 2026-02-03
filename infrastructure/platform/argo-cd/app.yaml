@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-cd
+  namespace: argocd
+  labels:
+    type: infrastructure
+    app: argo-cd
+spec:
+  project: platform-tools
+
+  sources:
+    - repoURL: https://github.com/temitayocharles/helm-charts.git
+      targetRevision: main
+      ref: values
+    
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argo-cd
+      targetRevision: 7.3.3
+      helm:
+        releaseName: argo-cd
+        valueFiles:
+          - $values/argocd/values.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
