@@ -62,8 +62,16 @@ spec:
     server: https://kubernetes.default.svc
   - namespace: 'monitoring'
     server: https://kubernetes.default.svc
+  - namespace: 'kube-system'
+    server: https://kubernetes.default.svc
   clusterResourceWhitelist:
   - group: 'monitoring.coreos.com'
+    kind: '*'
+  - group: 'apiextensions.k8s.io'
+    kind: 'CustomResourceDefinition'
+  - group: 'rbac.authorization.k8s.io'
+    kind: '*'
+  - group: 'admissionregistration.k8s.io'
     kind: '*'
   namespaceResourceBlacklist:
   - group: ''
