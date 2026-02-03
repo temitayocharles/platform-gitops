@@ -14,7 +14,7 @@ spec:
   - 'https://argoproj.github.io/argo-helm'
   - 'https://traefik.github.io/charts'
   - 'https://prometheus-community.github.io/helm-charts'
-  - 'https://charts.external-secrets.io'
+  - 'https://external-secrets.io'
   - 'https://charts.jetstack.io'
   - 'https://vmware-tanzu.github.io/helm-charts'
   destinations:
