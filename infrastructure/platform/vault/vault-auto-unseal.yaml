@@ -1,0 +1,91 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: vault-unseal-keys
+  namespace: vault
+type: Opaque
+stringData:
+  key1: "100f5e4b2365aacf6935dfc357ff5446a100272fa9c512743bde14064ab8b0fb14"
+  key2: "ceca08edc3133317a21045efa8a76c283ce3bf4bd52d3f2f5683524d6641b4cab8"
+  key3: "0d90dbec81460479893db93437b61be376c665b069f9e483b27fdde00822d3f521"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vault-unseal-script
+  namespace: vault
+data:
+  unseal.sh: |
+    #!/bin/sh
+    set -e
+    
+    echo "Checking Vault status..."
+    
+    # Check if vault is sealed
+    if vault status 2>&1 | grep -q "Sealed.*true"; then
+      echo "Vault is sealed. Starting unseal process..."
+      
+      # Read unseal keys from mounted secret
+      KEY1=$(cat /vault/unseal-keys/key1)
+      KEY2=$(cat /vault/unseal-keys/key2)
+      KEY3=$(cat /vault/unseal-keys/key3)
+      
+      # Unseal with 3 keys
+      echo "Applying unseal key 1/3..."
+      vault operator unseal "$KEY1"
+      
+      echo "Applying unseal key 2/3..."
+      vault operator unseal "$KEY2"
+      
+      echo "Applying unseal key 3/3..."
+      vault operator unseal "$KEY3"
+      
+      echo "Vault unsealed successfully!"
+      vault status
+    else
+      echo "Vault is already unsealed."
+      vault status
+    fi
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: vault-auto-unseal
+  namespace: vault
+spec:
+  schedule: "*/5 * * * *"  # Check every 5 minutes
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: vault
+          restartPolicy: OnFailure
+          containers:
+          - name: unseal
+            image: hashicorp/vault:1.15.5
+            command:
+            - /bin/sh
+            - /scripts/unseal.sh
+            env:
+            - name: VAULT_ADDR
+              value: "http://vault.vault.svc.cluster.local:8200"
+            - name: VAULT_SKIP_VERIFY
+              value: "true"
+            volumeMounts:
+            - name: unseal-script
+              mountPath: /scripts
+            - name: unseal-keys
+              mountPath: /vault/unseal-keys
+              readOnly: true
+          volumes:
+          - name: unseal-script
+            configMap:
+              name: vault-unseal-script
+              defaultMode: 0755
+          - name: unseal-keys
+            secret:
+              secretName: vault-unseal-keys

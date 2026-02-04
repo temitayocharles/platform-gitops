@@ -4,3 +4,4 @@ namespace: vault
 
 resources:
   - app.yaml
+  - vault-auto-unseal.yaml
