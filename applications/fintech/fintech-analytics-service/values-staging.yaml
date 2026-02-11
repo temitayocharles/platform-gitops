@@ -1,0 +1,38 @@
+replicaCount: 1
+image:
+  repository: ghcr.io/temitayocharles/fintech-analytics-service
+  tag: "latest"
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 80
+containerPort: 8000
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "250m"
+env:
+  config:
+    APP_NAME: "fintech-analytics-service"
+    ENV: "staging"
+externalSecrets:
+  enabled: true
+  storeRef: vault-backend
+  refreshInterval: 1h
+  basePath: kv/temitayo/staging/fintech-analytics-service
+secrets:
+  - envName: INFLUX_URL
+    secretName: app
+    secretKey: INFLUX_URL
+  - envName: INFLUX_ORG
+    secretName: app
+    secretKey: INFLUX_ORG
+  - envName: INFLUX_BUCKET
+    secretName: app
+    secretKey: INFLUX_BUCKET
+  - envName: INFLUX_TOKEN
+    secretName: app
+    secretKey: INFLUX_TOKEN

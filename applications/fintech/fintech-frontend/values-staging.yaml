@@ -1,0 +1,41 @@
+replicaCount: 1
+image:
+  repository: ghcr.io/temitayocharles/fintech-frontend
+  tag: "latest"
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 80
+containerPort: 3000
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "250m"
+env:
+  config:
+    APP_NAME: "fintech-frontend"
+    ENV: "staging"
+externalSecrets:
+  enabled: true
+  storeRef: vault-backend
+  refreshInterval: 1h
+  basePath: kv/temitayo/staging/fintech-frontend
+secrets:
+  - envName: REACT_APP_ACCOUNT_API_URL
+    secretName: app
+    secretKey: REACT_APP_ACCOUNT_API_URL
+  - envName: REACT_APP_TRANSACTION_API_URL
+    secretName: app
+    secretKey: REACT_APP_TRANSACTION_API_URL
+  - envName: REACT_APP_AUDIT_API_URL
+    secretName: app
+    secretKey: REACT_APP_AUDIT_API_URL
+  - envName: REACT_APP_ANALYTICS_API_URL
+    secretName: app
+    secretKey: REACT_APP_ANALYTICS_API_URL
+  - envName: REACT_APP_NOTIFICATION_API_URL
+    secretName: app
+    secretKey: REACT_APP_NOTIFICATION_API_URL

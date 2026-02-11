@@ -1,0 +1,38 @@
+replicaCount: 1
+image:
+  repository: ghcr.io/temitayocharles/fintech-user-service
+  tag: "latest"
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 80
+containerPort: 8000
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "250m"
+env:
+  config:
+    APP_NAME: "fintech-user-service"
+    ENV: "staging"
+externalSecrets:
+  enabled: true
+  storeRef: vault-backend
+  refreshInterval: 1h
+  basePath: kv/temitayo/staging/fintech-user-service
+secrets:
+  - envName: DATABASE_URL
+    secretName: app
+    secretKey: DATABASE_URL
+  - envName: KEYCLOAK_URL
+    secretName: app
+    secretKey: KEYCLOAK_URL
+  - envName: CLIENT_ID
+    secretName: app
+    secretKey: CLIENT_ID
+  - envName: CLIENT_SECRET
+    secretName: app
+    secretKey: CLIENT_SECRET
