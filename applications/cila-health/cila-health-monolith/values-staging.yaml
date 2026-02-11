@@ -3,6 +3,8 @@ image:
   repository: ghcr.io/temitayocharles/cila-health-monolith
   tag: "latest"
   pullPolicy: IfNotPresent
+imagePullSecrets:
+  - name: ghcr-creds
 service:
   type: ClusterIP
   port: 80
