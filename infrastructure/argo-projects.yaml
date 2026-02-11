@@ -117,7 +117,8 @@ spec:
     server: https://kubernetes.default.svc
   - namespace: 'apps'
     server: https://kubernetes.default.svc
+  - namespace: 'apps-dev'
+    server: https://kubernetes.default.svc
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
-
