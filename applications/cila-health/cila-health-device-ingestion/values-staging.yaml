@@ -1,0 +1,25 @@
+replicaCount: 1
+image:
+  repository: ghcr.io/temitayocharles/cila-health-device-ingestion
+  tag: "latest"
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 80
+containerPort: 8000
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "250m"
+externalSecrets:
+  enabled: true
+  storeRef: vault-backend
+  refreshInterval: 1h
+  basePath: kv/temitayo/staging/cila-health-microservices/device-ingestion
+secrets:
+  - envName: PLACEHOLDER
+    secretName: cila-health-device-ingestion-secrets
+    secretKey: PLACEHOLDER
