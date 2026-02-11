@@ -11,7 +11,7 @@ spec:
       path: applications/fintech-audit-service
       helm:
         valueFiles:
-          - $values/values-staging.yaml
+          - $values/applications/fintech/fintech-audit-service/values-staging.yaml
     - repoURL: https://github.com/temitayocharles/platform-gitops.git
       targetRevision: main
       ref: values

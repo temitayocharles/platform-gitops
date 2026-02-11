@@ -11,7 +11,7 @@ spec:
       path: applications/fintech-notification-service
       helm:
         valueFiles:
-          - $values/values-staging.yaml
+          - $values/applications/fintech/fintech-notification-service/values-staging.yaml
     - repoURL: https://github.com/temitayocharles/platform-gitops.git
       targetRevision: main
       ref: values

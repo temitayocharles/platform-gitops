@@ -11,7 +11,7 @@ spec:
       path: applications/fintech-analytics-service
       helm:
         valueFiles:
-          - $values/values-staging.yaml
+          - $values/applications/fintech/fintech-analytics-service/values-staging.yaml
     - repoURL: https://github.com/temitayocharles/platform-gitops.git
       targetRevision: main
       ref: values
