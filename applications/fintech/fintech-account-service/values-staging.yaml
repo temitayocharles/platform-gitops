@@ -22,20 +22,20 @@ externalSecrets:
   enabled: true
   storeRef: vault-backend
   refreshInterval: 1h
-  basePath: kv/temitayo/staging/fintech-account-service
+  basePath: kv/temitayo/staging/fintech-account-service/app
 secrets:
   - envName: PORT
-    secretName: app
+    secretName: fintech-account-service-secrets
     secretKey: PORT
   - envName: ENVIRONMENT
-    secretName: app
+    secretName: fintech-account-service-secrets
     secretKey: ENVIRONMENT
   - envName: DATABASE_URL
-    secretName: app
+    secretName: fintech-account-service-secrets
     secretKey: DATABASE_URL
   - envName: KAFKA_BROKERS
-    secretName: app
+    secretName: fintech-account-service-secrets
     secretKey: KAFKA_BROKERS
   - envName: ENCRYPTION_KEY
-    secretName: app
+    secretName: fintech-account-service-secrets
     secretKey: ENCRYPTION_KEY

@@ -22,20 +22,20 @@ externalSecrets:
   enabled: true
   storeRef: vault-backend
   refreshInterval: 1h
-  basePath: kv/temitayo/staging/fintech-frontend
+  basePath: kv/temitayo/staging/fintech-frontend/app
 secrets:
   - envName: REACT_APP_ACCOUNT_API_URL
-    secretName: app
+    secretName: fintech-frontend-secrets
     secretKey: REACT_APP_ACCOUNT_API_URL
   - envName: REACT_APP_TRANSACTION_API_URL
-    secretName: app
+    secretName: fintech-frontend-secrets
     secretKey: REACT_APP_TRANSACTION_API_URL
   - envName: REACT_APP_AUDIT_API_URL
-    secretName: app
+    secretName: fintech-frontend-secrets
     secretKey: REACT_APP_AUDIT_API_URL
   - envName: REACT_APP_ANALYTICS_API_URL
-    secretName: app
+    secretName: fintech-frontend-secrets
     secretKey: REACT_APP_ANALYTICS_API_URL
   - envName: REACT_APP_NOTIFICATION_API_URL
-    secretName: app
+    secretName: fintech-frontend-secrets
     secretKey: REACT_APP_NOTIFICATION_API_URL

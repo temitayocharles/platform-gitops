@@ -22,17 +22,17 @@ externalSecrets:
   enabled: true
   storeRef: vault-backend
   refreshInterval: 1h
-  basePath: kv/temitayo/staging/fintech-analytics-service
+  basePath: kv/temitayo/staging/fintech-analytics-service/app
 secrets:
   - envName: INFLUX_URL
-    secretName: app
+    secretName: fintech-analytics-service-secrets
     secretKey: INFLUX_URL
   - envName: INFLUX_ORG
-    secretName: app
+    secretName: fintech-analytics-service-secrets
     secretKey: INFLUX_ORG
   - envName: INFLUX_BUCKET
-    secretName: app
+    secretName: fintech-analytics-service-secrets
     secretKey: INFLUX_BUCKET
   - envName: INFLUX_TOKEN
-    secretName: app
+    secretName: fintech-analytics-service-secrets
     secretKey: INFLUX_TOKEN

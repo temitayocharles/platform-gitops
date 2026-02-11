@@ -22,11 +22,11 @@ externalSecrets:
   enabled: true
   storeRef: vault-backend
   refreshInterval: 1h
-  basePath: kv/temitayo/staging/fintech-notification-service
+  basePath: kv/temitayo/staging/fintech-notification-service/app
 secrets:
   - envName: KAFKA_BROKERS
-    secretName: app
+    secretName: fintech-notification-service-secrets
     secretKey: KAFKA_BROKERS
   - envName: EMAIL_PROVIDER_URL
-    secretName: app
+    secretName: fintech-notification-service-secrets
     secretKey: EMAIL_PROVIDER_URL

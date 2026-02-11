@@ -22,17 +22,17 @@ externalSecrets:
   enabled: true
   storeRef: vault-backend
   refreshInterval: 1h
-  basePath: kv/temitayo/staging/fintech-user-service
+  basePath: kv/temitayo/staging/fintech-user-service/app
 secrets:
   - envName: DATABASE_URL
-    secretName: app
+    secretName: fintech-user-service-secrets
     secretKey: DATABASE_URL
   - envName: KEYCLOAK_URL
-    secretName: app
+    secretName: fintech-user-service-secrets
     secretKey: KEYCLOAK_URL
   - envName: CLIENT_ID
-    secretName: app
+    secretName: fintech-user-service-secrets
     secretKey: CLIENT_ID
   - envName: CLIENT_SECRET
-    secretName: app
+    secretName: fintech-user-service-secrets
     secretKey: CLIENT_SECRET
