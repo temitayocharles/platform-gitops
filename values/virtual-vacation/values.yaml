@@ -1,0 +1,9 @@
+namespace: apps
+
+image:
+  backend: ghcr.io/temitayocharles/virtual-vacation-backend:latest
+  frontend: ghcr.io/temitayocharles/virtual-vacation-frontend:latest
+  mediaGateway: ghcr.io/temitayocharles/virtual-vacation-media-gateway:latest
+
+persistence:
+  enabled: false
