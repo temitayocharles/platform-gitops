@@ -1,0 +1,18 @@
+imagePullSecrets:
+  - name: ghcr-creds
+
+postgres:
+  image: postgres:15
+  db: userdb
+  user: user
+  passwordSecretName: postgres-credentials
+  passwordSecretKey: POSTGRES_PASSWORD
+
+service:
+  port: 5432
+
+externalSecrets:
+  enabled: true
+  storeRef: vault-backend
+  refreshInterval: 1m
+  basePath: kv/temitayo/staging/fintech-infrastructure/postgres
