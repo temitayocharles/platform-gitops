@@ -4,7 +4,7 @@ metadata:
   name: fintech-transaction-service
   namespace: argocd
 spec:
-  project: default
+  project: workloads
   sources:
     - repoURL: https://github.com/temitayocharles/helm-charts.git
       targetRevision: main

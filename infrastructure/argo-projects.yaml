@@ -99,4 +99,25 @@ spec:
   - group: 'networking.k8s.io'
     kind: '*'
 
+---
+# Workloads Project - Application workloads (Fintech, labs, demos)
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: workloads
+  namespace: argocd
+spec:
+  description: "Application workloads (labs and services)"
+  sourceRepos:
+  - 'https://github.com/temitayocharles/platform-gitops.git'
+  - 'https://github.com/temitayocharles/helm-charts.git'
+  - 'https://github.com/temitayocharles/configurations.git'
+  destinations:
+  - namespace: 'fintech'
+    server: https://kubernetes.default.svc
+  - namespace: 'apps'
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
 
