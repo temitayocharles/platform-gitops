@@ -14,10 +14,5 @@ resources:
   limits:
     memory: "256Mi"
     cpu: "250m"
-  enabled: true
-  storeRef: vault-backend
-  refreshInterval: 1h
-  basePath: kv/temitayo/staging/cila-health-microservices/device-ingestion
-    secretName: cila-health-device-ingestion-secrets
 externalSecret:
   enabled: false
