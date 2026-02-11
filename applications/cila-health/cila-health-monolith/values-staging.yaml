@@ -16,3 +16,5 @@ resources:
     cpu: "500m"
 externalSecret:
   enabled: false
+ingress:
+  enabled: false
