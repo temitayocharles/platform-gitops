@@ -25,8 +25,12 @@ env:
     value: "cila-health-device-ingestion-postgresql"
   - name: POSTGRES_PORT
     value: "5432"
+  - name: POSTGRES_USER
+    value: "device_ingestion"
+  - name: POSTGRES_PASSWORD
+    value: "device-pass"
   - name: POSTGRES_DB
-    value: "cila_device"
+    value: "device_ingestion"
   - name: REDIS_HOST
     value: "cila-health-device-ingestion-redis-master"
   - name: REDIS_PORT
@@ -39,9 +43,9 @@ postgresql:
     repository: bitnami/postgresql
     tag: latest
   auth:
-    username: device
+    username: device_ingestion
     password: device-pass
-    database: cila_device
+    database: device_ingestion
     postgresPassword: device-postgres-pass
 redis:
   enabled: true
