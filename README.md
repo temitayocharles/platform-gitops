@@ -21,6 +21,15 @@ A **complete, self-owned, team-ready Kubernetes platform** with:
 
 Everything is **declarative**, **auditable**, **reproducible from Git**, and **organized by team/function**.
 
+## Dependency Graph
+```
+platform-gitops
+  -> helm-charts (charts + values)
+  -> configurations (ConfigMaps and non-secret defaults)
+  -> Vault (secrets via ESO)
+  -> shared-workflows (optional Argo sync)
+```
+
 ---
 
 ## Quick Start
