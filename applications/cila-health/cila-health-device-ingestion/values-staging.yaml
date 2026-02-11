@@ -20,3 +20,33 @@ externalSecret:
   enabled: false
 ingress:
   enabled: false
+env:
+  - name: POSTGRES_SERVER
+    value: "cila-health-device-ingestion-postgresql"
+  - name: POSTGRES_PORT
+    value: "5432"
+  - name: POSTGRES_DB
+    value: "cila_device"
+  - name: REDIS_HOST
+    value: "cila-health-device-ingestion-redis-master"
+  - name: REDIS_PORT
+    value: "6379"
+  - name: REDIS_DB
+    value: "0"
+postgresql:
+  enabled: true
+  image:
+    repository: bitnami/postgresql
+    tag: latest
+  auth:
+    username: device
+    password: device-pass
+    database: cila_device
+    postgresPassword: device-postgres-pass
+redis:
+  enabled: true
+  image:
+    repository: bitnami/redis
+    tag: latest
+  auth:
+    enabled: false
