@@ -1,11 +1,25 @@
 # Platform GitOps - Production Kubernetes Platform
 
+
+## Start Here
+- Read [START_HERE.md](START_HERE.md) for the chronological playbook.
+
 **Version:** 2.1 (Production Ready - Restructured)  
 **Last Updated:** 2026-02-01  
 **Status:** ✅ Fully Operational  
 **Cluster:** K3s Single Node (16GB Mac, 10GB K3s, 6GB macOS)
 
 ---
+
+
+## Documentation Index
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+- [docs/CLUSTER_OPERATIONS.md](docs/CLUSTER_OPERATIONS.md)
+- [docs/DEPLOY_APP.md](docs/DEPLOY_APP.md)
+- [docs/DISASTER_RECOVERY.md](docs/DISASTER_RECOVERY.md)
+- [docs/OPERATIONS.md](docs/OPERATIONS.md)
+- [docs/QUICK_START.md](docs/QUICK_START.md)
+- [docs/velero-restore-runbook.md](docs/velero-restore-runbook.md)
 
 ## What Is This?
 
