@@ -7,8 +7,7 @@ imagePullSecrets:
   - name: ghcr-creds
 service:
   type: ClusterIP
-  port: 80
-containerPort: 8000
+  port: 8000
 resources:
   requests:
     memory: "128Mi"
