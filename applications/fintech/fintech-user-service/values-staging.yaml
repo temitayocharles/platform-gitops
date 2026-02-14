@@ -24,7 +24,7 @@ externalSecrets:
   enabled: true
   storeRef: vault-backend
   refreshInterval: 1h
-  basePath: kv/temitayo/staging/fintech-user-service/app
+  basePath: temitayo/staging/fintech-user-service/app
 secrets:
   - envName: DATABASE_URL
     secretName: fintech-user-service-secrets

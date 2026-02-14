@@ -24,7 +24,7 @@ externalSecrets:
   enabled: true
   storeRef: vault-backend
   refreshInterval: 1h
-  basePath: kv/temitayo/staging/fintech-frontend/app
+  basePath: temitayo/staging/fintech-frontend/app
 secrets:
   - envName: REACT_APP_ACCOUNT_API_URL
     secretName: fintech-frontend-secrets

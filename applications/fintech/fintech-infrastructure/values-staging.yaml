@@ -15,4 +15,4 @@ externalSecrets:
   enabled: true
   storeRef: vault-backend
   refreshInterval: 1m
-  basePath: kv/temitayo/staging/fintech-infrastructure/postgres
+  basePath: temitayo/staging/fintech-infrastructure/postgres

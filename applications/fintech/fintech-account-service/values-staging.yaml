@@ -24,7 +24,7 @@ externalSecrets:
   enabled: true
   storeRef: vault-backend
   refreshInterval: 1h
-  basePath: kv/temitayo/staging/fintech-account-service/app
+  basePath: temitayo/staging/fintech-account-service/app
 secrets:
   - envName: PORT
     secretName: fintech-account-service-secrets

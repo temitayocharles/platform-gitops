@@ -24,7 +24,7 @@ externalSecrets:
   enabled: true
   storeRef: vault-backend
   refreshInterval: 1h
-  basePath: kv/temitayo/staging/fintech-audit-service/app
+  basePath: temitayo/staging/fintech-audit-service/app
 secrets:
   - envName: ELASTICSEARCH_URL
     secretName: fintech-audit-service-secrets
