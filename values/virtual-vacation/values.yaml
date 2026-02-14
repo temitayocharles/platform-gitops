@@ -2,7 +2,7 @@ namespace: apps
 
 image:
   backend: ghcr.io/temitayocharles/virtual-vacation-backend:latest
-  frontend: ghcr.io/temitayocharles/virtual-vacation-frontend:staging-f4423c9
+  frontend: ghcr.io/temitayocharles/virtual-vacation-frontend:staging-fb9438f
   mediaGateway: ghcr.io/temitayocharles/virtual-vacation-media-gateway:latest
 
 persistence:
