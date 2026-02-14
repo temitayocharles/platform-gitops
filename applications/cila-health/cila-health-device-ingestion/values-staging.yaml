@@ -20,6 +20,8 @@ externalSecret:
 ingress:
   enabled: false
 env:
+  - name: DATABASE_URL
+    value: "postgresql+asyncpg://device_ingestion:device-pass@cila-health-device-ingestion-postgresql:5432/device_ingestion"
   - name: POSTGRES_SERVER
     value: "cila-health-device-ingestion-postgresql"
   - name: POSTGRES_PORT
