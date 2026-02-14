@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: ghcr.io/temitayocharles/cila-health-device-ingestion
-  tag: "latest"
+  tag: "733b27a"
   pullPolicy: Always
 imagePullSecrets:
   - name: ghcr-creds
