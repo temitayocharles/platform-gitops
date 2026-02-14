@@ -15,7 +15,6 @@ spec:
     - repoURL: https://github.com/temitayocharles/platform-gitops.git
       targetRevision: main
       ref: values
-      path: values/virtual-vacation
   destination:
     server: https://kubernetes.default.svc
     namespace: apps
