@@ -20,7 +20,7 @@ externalSecret:
   enabled: false
 ingress:
   enabled: false
-appKey: "base64:ZGV2LW1vbm9saXRoLWtleS0xMjM0NTY3ODkwMTIzNDU2Nzg5MA=="
+appKey: "base64:klnpxyDKmIg1KK8oMtumzXCDyrMVbumA3sk+ACxDbmg="
 database:
   host: cila-health-monolith-postgresql
   port: 5432
