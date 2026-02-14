@@ -53,3 +53,5 @@ redis:
     tag: latest
   auth:
     enabled: false
+  replica:
+    replicaCount: 0
