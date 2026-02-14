@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: ghcr.io/temitayocharles/ai-adventure-game
-  tag: "e544be6"
+  tag: "staging-c9ecd1a"
   pullPolicy: Always
 imagePullSecrets:
   - name: ghcr-creds
