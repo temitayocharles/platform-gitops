@@ -8,6 +8,7 @@ ArgoCD GitOps repo that defines Applications, ApplicationSets, and environment v
 ## 2. Repo Map (What Lives Where)
 - [README.md](README.md): High‑level overview.
 - Docs: [docs/QUICK_START.md](docs/QUICK_START.md), [docs/DEPLOY_APP.md](docs/DEPLOY_APP.md), [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+- New service playbook: [docs/NEW_SERVICE.md](docs/NEW_SERVICE.md)
 - Applications and values live under [applications](applications).
 
 ## 3. Deploy a New App (Chronological)
