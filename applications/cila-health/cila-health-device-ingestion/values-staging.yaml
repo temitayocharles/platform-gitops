@@ -33,7 +33,7 @@ env:
   - name: POSTGRES_DB
     value: "device_ingestion"
   - name: REDIS_HOST
-    value: "cila-health-device-ingestion-redis-master"
+    value: "cila-health-monolith-redis-master"
   - name: REDIS_PORT
     value: "6379"
   - name: REDIS_DB
@@ -49,7 +49,7 @@ postgresql:
     database: device_ingestion
     postgresPassword: device-postgres-pass
 redis:
-  enabled: true
+  enabled: false
   image:
     repository: bitnami/redis
     tag: latest
