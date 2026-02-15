@@ -48,3 +48,8 @@ redis:
     enabled: false
   replica:
     replicaCount: 0
+
+features:
+  deviceIngestion:
+    enabled: true
+    microserviceUrl: "http://device-ingestion-cila-health-device-ingestion:8000"
