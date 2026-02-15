@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: ghcr.io/temitayocharles/cila-health-monolith
-  tag: "staging-b3ac090"
+  tag: "staging-c7381ae"
   pullPolicy: Always
 imagePullSecrets:
   - name: ghcr-creds
