@@ -1,0 +1,56 @@
+replicaCount: 1
+image:
+  repository: ghcr.io/temitayocharles/autodesk-data-ingestion-service
+  tag: "staging-CHANGE-ME"
+  pullPolicy: Always
+imagePullSecrets:
+  - name: ghcr-creds
+
+service:
+  type: ClusterIP
+  port: 8000
+
+containerPort: 8000
+
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "50m"
+  limits:
+    memory: "256Mi"
+    cpu: "250m"
+
+env:
+  config: {}
+
+configMap:
+  create: false
+  name: autodesk-project-data-ingestion-service-config
+
+secrets:
+  - envName: DATABASE_URL
+    secretName: autodesk-project-data-ingestion-service-secret
+    secretKey: DATABASE_URL
+  - envName: AWS_ACCESS_KEY_ID
+    secretName: autodesk-project-data-ingestion-service-secret
+    secretKey: AWS_ACCESS_KEY_ID
+  - envName: AWS_SECRET_ACCESS_KEY
+    secretName: autodesk-project-data-ingestion-service-secret
+    secretKey: AWS_SECRET_ACCESS_KEY
+
+externalSecrets:
+  enabled: false
+  storeRef: vault-autodesk-project-data-ingestion-service
+  refreshInterval: 1m
+  basePath: temitayo/staging/autodesk-project/data-ingestion-service
+
+ingress:
+  enabled: true
+  className: traefik
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+  hosts:
+    - host: autodesk-data-ingestion.local
+      paths:
+        - path: /
+          pathType: Prefix

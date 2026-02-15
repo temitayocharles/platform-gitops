@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: autodesk-data-api-service
+  namespace: argocd
+spec:
+  project: workloads
+  sources:
+    - repoURL: https://github.com/temitayocharles/helm-charts.git
+      targetRevision: main
+      path: applications/autodesk-data-api-service
+      helm:
+        valueFiles:
+          - $values/applications/autodesk/autodesk-data-api-service/values-staging.yaml
+    - repoURL: https://github.com/temitayocharles/platform-gitops.git
+      targetRevision: main
+      ref: values
+      path: applications/autodesk/autodesk-data-api-service
+    - repoURL: https://github.com/temitayocharles/configurations.git
+      targetRevision: main
+      path: applications/autodesk-project/configmaps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: apps-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
