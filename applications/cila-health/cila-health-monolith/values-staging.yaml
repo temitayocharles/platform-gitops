@@ -16,6 +16,8 @@ resources:
   limits:
     memory: "512Mi"
     cpu: "500m"
+migrations:
+  enabled: true
 externalSecret:
   enabled: false
 ingress:
