@@ -43,6 +43,7 @@ redis:
   enabled: true
   host: cila-health-monolith-redis-master
   port: 6379
+  prefix: ""
   image:
     repository: bitnami/redis
     tag: latest
