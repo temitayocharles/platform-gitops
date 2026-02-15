@@ -7,11 +7,11 @@ This repo is the source of truth for:
 Charts live in `helm-charts`. ConfigMaps live in `configurations`. Secrets live in Vault (enforced by `vault-ops`).
 
 ## Cross-Repo Dependencies
-- Charts: `temitayocharles/helm-charts`
-  - New chart playbook: `helm-charts/docs/NEW_SERVICE.md`
-- ConfigMaps + `.env.example`: `temitayocharles/configurations`
-- Vault boundaries (policies/roles/stores): `temitayocharles/vault-ops`
-  - New service playbook: `vault-ops/docs/NEW_SERVICE.md`
+- Charts: [`temitayocharles/helm-charts`](https://github.com/temitayocharles/helm-charts)
+  - New chart playbook: [`helm-charts/docs/NEW_SERVICE.md`](https://github.com/temitayocharles/helm-charts/blob/main/docs/NEW_SERVICE.md)
+- ConfigMaps + `.env.example`: [`temitayocharles/configurations`](https://github.com/temitayocharles/configurations)
+- Vault boundaries (policies/roles/stores): [`temitayocharles/vault-ops`](https://github.com/temitayocharles/vault-ops)
+  - New service playbook: [`vault-ops/docs/NEW_SERVICE.md`](https://github.com/temitayocharles/vault-ops/blob/main/docs/NEW_SERVICE.md)
 
 ## 1) Create the Argo App + Values (Generator Script)
 ```bash
@@ -59,4 +59,3 @@ If this app was only deployed for verification, delete it:
 ssh ubuntu-vm
 sudo -n k3s kubectl -n argocd delete application <app> --wait=true
 ```
-
