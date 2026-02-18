@@ -460,3 +460,8 @@ vault operator unseal <key3>
 ---
 
 **Questions?** Check the docs/ directory for detailed guides on architecture, operations, and recovery.
+
+
+## Architecture Maps
+- [DEPENDENCY_LADDER.md](./DEPENDENCY_LADDER.md)
+- [ARCHITECTURE.md](./ARCHITECTURE.md)
